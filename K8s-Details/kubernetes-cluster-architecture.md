@@ -40,6 +40,8 @@ It consists of:
           +-------------------+         +-------------------+
 ```
 
+
+
 ---
 
 # Kubernetes Cluster Components
@@ -552,6 +554,19 @@ Storage Driver
     v
 Persistent Volume
 ```
+
+---
+
+# 
+
+| RESOURCE                        | WHAT IT DOES                                                                               | SCOPE     |
+| ------------------------------- | ------------------------------------------------------------------------------------------ | --------- |
+| **Volume**                      | Storage mounted into a Pod — tied to Pod lifecycle                                         | Pod       |
+| **PersistentVolume (PV)**       | Pre-provisioned storage resource in the cluster (NFS, EBS, GCE PD, etc.)                   | Cluster   |
+| **PersistentVolumeClaim (PVC)** | User's request for storage — bound to a PV                                                 | Namespace |
+| **StorageClass**                | Defines provisioner and parameters for dynamic PV provisioning                             | Cluster   |
+| **ConfigMap**                   | Store non-sensitive config data as key-value pairs, mounted as env vars or files           | Namespace |
+| **Secret**                      | Store sensitive data (passwords, tokens, certs) — base64-encoded, can be encrypted at rest | Namespace |
 
 ---
 

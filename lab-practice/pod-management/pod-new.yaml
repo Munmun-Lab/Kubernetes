@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata: #dictionary datatype
+  labels:
+    run: nginx
+    enc: dev
+  name: nginx
+spec:  #dictionary datatype
+  containers:   #list of containers which are running inside the pod
+  - image: nginx
+    name: nginx
+    ports:   #list datatype
+    - containerPort: 80   #sublist inside container

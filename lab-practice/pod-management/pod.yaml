@@ -1,0 +1,15 @@
+# example of yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:  #labels are key value pair which is used to identify the pod & multi level can be added
+    app: nginx
+    type: webserver
+spec:      #specification of the pod or a dictionary have a various fields inside it
+  containers:
+  - name: nginx-container
+    image: nginx:latest
+    ports:
+    - containerPort: 80 

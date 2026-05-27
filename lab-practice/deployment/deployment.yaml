@@ -1,0 +1,26 @@
+apiVeraion: apps/v1
+Kind: Deployment
+metadata:
+  name: nginx-deploy
+  labels:
+    app: nginx
+    environment: production
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+      environment: production
+  template:     
+    metadata:
+      labels:
+        app: nginx
+        environment: production
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        
+          

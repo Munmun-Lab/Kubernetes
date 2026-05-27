@@ -1,0 +1,25 @@
+apiVersion: v1
+#kind: ReplicationController  #old version, only be used to manage the resources which is created part of replica controller, but not for the resources/pods which is created by replica controller
+Kind: ReplicaSet  #new version,  this can be used to manage this existing pods as well, which are not part of replica set
+metadata:
+  name: nginx-rc
+  labesls: # labes can also be part of metadata
+    app: nginx
+    environment: production
+spec:
+  template:
+    metadata:
+      labels:
+        app: nginx
+        environment: production
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+      environment: production

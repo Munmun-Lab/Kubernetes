@@ -1,26 +1,24 @@
-apiVeraion: apps/v1
-Kind: Deployment
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: nginx-deploy
   labels:
     app: nginx
-    environment: production
+    env: dev
 spec:
   replicas: 3
   selector:
     matchLabels:
       app: nginx
-      environment: production
+      env: dev
   template:     
     metadata:
       labels:
         app: nginx
-        environment: production
+        env: dev
     spec:
       containers:
       - name: nginx
         image: nginx:latest
         ports:
         - containerPort: 80
-        
-          

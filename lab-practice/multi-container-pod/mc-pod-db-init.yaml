@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: myapp-container
+    image: busybox:1.28  #busybox image is used to run a simple command and keep the container running
+    command: ['sh', '-c', 'echo the app is running && sleep 3600'] #passing a command to the container to print a message and keep it running for an hour, so pod will run and not go into crashloop
+    env:
+    - name: FIRSTNAME
+      value: "Hello"
+    - name: LASTNAME
+      value: "World"
+  initContainers:  #multicontainer pod with an init container that runs before the main container starts
+  - name: init-myservice
+    image: busybox:1.28
+    command: ['sh', '-c', 'echo "Initializing my service..."; sleep 10']  #passing a command to the init container to print a message and keep it running
+    args: ['until nslookup myservice.default.svc.cluster.local; do echo waiting for service to be up; sleep 2; done']
+  -name: init-mydb
+    image: busybox:1.28
+    command: ['sh', '-c']
+    args: ['until nslookup mydb.default.svc.cluster.local; do echo waiting for database to be up; sleep 2; done']

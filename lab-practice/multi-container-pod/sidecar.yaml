@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sidecar-demo
+
+spec:
+  containers:
+  - name: nginx-sidecar 
+    image: nginx
+
+  - name: helper
+    image: busybox
+    command: ["sh", "-c", "while true; do echo monitoring nginx; sleep 10; done"]

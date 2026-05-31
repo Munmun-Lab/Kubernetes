@@ -1,0 +1,29 @@
+#Node Affinity - OR Condition
+#Node can have: env=prod OR env=qa
+
+#Pod Yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+
+        - matchExpressions:
+          - key: env
+            operator: In
+            values:
+            - prod
+
+        - matchExpressions:
+          - key: env
+            operator: In
+            values:
+            - qa
+
+  containers:
+  - name: nginx
+    image: nginx

@@ -1,0 +1,21 @@
+#Label: kubectl label node worker1 cpu=8
+
+#Pod Yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: high-cpu-app
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: cpu
+            operator: Gt
+            values:
+            - "4"
+
+  containers:
+  - name: nginx
+    image: nginx

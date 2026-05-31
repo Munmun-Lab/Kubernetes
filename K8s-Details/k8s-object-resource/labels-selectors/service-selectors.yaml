@@ -1,0 +1,30 @@
+# Service Selector Example
+
+### Pod
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx
+
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+
+### Service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+
+spec:
+  selector:
+    app: nginx
+
+  ports:
+  - port: 80
+    targetPort: 80

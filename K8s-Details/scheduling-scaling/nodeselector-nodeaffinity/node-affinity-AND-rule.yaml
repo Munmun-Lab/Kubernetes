@@ -1,0 +1,29 @@
+#Node Affinity - Multiple Labels(AND Condition)
+#Node must have  env=prod AND disk=ssd
+
+#kubectl label node worker1 env=prod
+#kubectl label node worker1 disk=ssd
+
+#Pod YAML
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: env
+            operator: In
+            values:
+            - prod
+          - key: disk
+            operator: In
+            values:
+            - ssd
+
+  containers:
+  - name: nginx
+    image: nginx

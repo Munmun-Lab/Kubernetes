@@ -1,0 +1,22 @@
+#label :  kubectl label node worker1 gpu=true
+
+#Avoid nodes with label gpu.
+
+#Pod Yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: gpu
+            operator: DoesNotExist
+
+  containers:
+  - name: nginx
+    image: nginx

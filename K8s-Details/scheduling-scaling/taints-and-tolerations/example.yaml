@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-toleration
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+
+  tolerations:
+  - key: "env"
+    operator: "Equal"
+    value: "prod"
+    effect: "NoSchedule"
+
+---
+
+#kubectl taint nodes worker1 env=prod:NoSchedule
+
+#kubectl describe node worker1 | grep Taints
+
+#kubectl apply -f pod-toleration.yaml
+

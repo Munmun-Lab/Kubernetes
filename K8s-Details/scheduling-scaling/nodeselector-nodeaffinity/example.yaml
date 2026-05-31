@@ -1,0 +1,69 @@
+#Label Node
+#kubectl label node worker1 env=prod
+
+#Pod YAML
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-selector
+spec:
+  nodeSelector:
+    env: prod
+
+  containers:
+  - name: nginx
+    image: nginx
+
+---
+#Node Affinity(Required) - Single label match
+#kubectl label node worker1 env=prod
+
+#Pod YAML
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-required
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: env
+            operator: In
+            values:
+            - prod
+
+  containers:
+  - name: nginx
+    image: nginx
+
+---
+
+#Node Affinity(Preferred) - Soft Ruyle
+#kubectl label node worker1 env=prod
+
+#Pod YAML
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-preferred
+spec:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        preference:
+          matchExpressions:
+          - key: env
+            operator: In
+            values:
+            - prod
+
+  containers:
+  - name: nginx
+    image: nginx
+
+---
+
+

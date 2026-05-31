@@ -1,0 +1,22 @@
+#Node Label: kubectl label node worker1 version=3
+
+#Pod Yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: legacy-app
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: version
+            operator: Lt
+            values:
+            - "5"
+
+  containers:
+  - name: nginx
+    image: nginx
+    

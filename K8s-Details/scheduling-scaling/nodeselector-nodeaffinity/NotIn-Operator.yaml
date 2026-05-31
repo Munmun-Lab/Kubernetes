@@ -1,0 +1,23 @@
+#label: kubectl label node worker1 gpu=true
+
+#Run everywhere except dev nodes
+
+#Pod Yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: env
+            operator: NotIn
+            values:
+            - dev
+
+  containers:
+  - name: nginx
+    image: nginx

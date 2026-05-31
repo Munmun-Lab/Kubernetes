@@ -1,0 +1,18 @@
+#Startup Probe YAML
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-startup
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+
+    startupProbe:
+      httpGet:
+        path: /
+        port: 80
+
+      failureThreshold: 30
+      periodSeconds: 10

@@ -94,9 +94,9 @@ Image:
 - Public Key details
 - Signature algorithm
 
-#### Create Kubernetes TLS Secret
+### *Create Kubernetes TLS Secret
 
-Kubernetes stores certificates as Secrets.
+- Kubernetes stores certificates as Secrets.
 
 - Command:
   ```bash
@@ -120,9 +120,8 @@ Kubernetes stores certificates as Secrets.
   Type: kubernetes.io/tls
   ```
 
----
 
-### View Secret YAML
+### *View Secret YAML
   
   ```bash
   kubectl get secret my-tls-secret -o yaml
@@ -143,7 +142,7 @@ Decode:
 
 ---
 
-### Use TLS Secret in Ingress
+### *Use TLS Secret in Ingress
 
 Example:
 
@@ -180,7 +179,7 @@ spec:
 - Check Certificate from Browser: https://myapp.local
 
 
-### Mount Certificate Inside Pod
+### *Mount Certificate Inside Pod
 
 ```yaml
 #Create volume
@@ -214,10 +213,6 @@ Output:
 ---
 
 #### Certificate Expiry Check
-
-## TLS Certificate Check (Local & Remote)
-
-## TLS Certificate Checks (Local vs Remote)
 
 | Scenario | Command | Output / Purpose |
 |----------|---------|------------------|

@@ -49,36 +49,34 @@ Image:
 
 #### Create Self-Signed Certificate (using OpenSSL)
 
--------------------------------------------------------------------------
+
 Generate private key:              |        Explanation                  |
----------------------------------  | ---------------------------------   |
-                                   | #openssl      -> SSL tool           |
-openssl genrsa -out tls.key 2048   | #genrsa       -> Generate RSA key   |
+---------------------------------  | ----------------------------------  |
+openssl genrsa -out tls.key 2048   | #openssl      -> SSL tool           |
+                                   | #genrsa       -> Generate RSA key   |
                                    | #-out tls.key -> Save as tls.key    |
 Output:  tls.key                   | #2048         -> Key size           | 
-```
--------------------------------------------------------------------------
+-----------------------------------------------------------------------
 
 
 #### Generate self signed certificate:
-------------------------------------------------------------------------
+
  openssl req -new -x509 \       | req          | Certificate request     
  -key tls.key \                 | -new         | Create new              
  -out tls.crt \                 | -x509        | Self-signed certificate
 -days 365                       | -key tls.key | Use private key         
 ------------------------------- | -out tls.crt | Output certificate      
 output: tls.crt                 | -days 365    | Valid for 365 days      
--------------------------------------------------------------------------
+
 
 
 #### Verify Certificate
--------------------------------------------------------------------------------
+
 Command:                                | x509 -> Certificate format
 openssl x509 -in tls.crt -text -noout   | -in -> Input Certificate
                                         | -text -> Show Details
 -------------------------------------   | -noout -> Don't print raw certificate
 Shows: Issuer, Subject,Expiry Date      |
--------------------------------------------------------------------------------
 
 
 #### Create Kubernetes TLS Secret

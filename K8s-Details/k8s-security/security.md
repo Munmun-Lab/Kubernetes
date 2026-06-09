@@ -63,14 +63,16 @@ Image:
 
 ## Generate Self-Signed Certificate using OpenSSL
 
+## OpenSSL Self-Signed Certificate Command Breakdown
+
 | Command Part | Option | Explanation |
 |--------------|--------|-------------|
-| `openssl req` | req | Start certificate request process |
-| `-new` | -new | Create a new request |
-| `-x509` | -x509 | Generate a self-signed certificate (not CSR) |
-| `-key tls.key` | -key tls.key | Use existing private key |
-| `-out tls.crt` | -out tls.crt | Output certificate file |
-| `-days 365` | -days 365 | Certificate validity (365 days) |
+| `openssl req` | req | Starts certificate request process |
+| `-new` | -new | Creates a new request |
+| `-x509` | -x509 | Generates a self-signed certificate instead of CSR |
+| `-key tls.key` | -key tls.key | Uses existing private key file |
+| `-out tls.crt` | -out tls.crt | Writes output certificate to file |
+| `-days 365` | -days 365 | Sets certificate validity to 365 days |
 
 
 ### Verify Certificate
@@ -120,7 +122,7 @@ Kubernetes stores certificates as Secrets.
 
 ---
 
-# View Secret YAML
+### View Secret YAML
   
   ```bash
   kubectl get secret my-tls-secret -o yaml
@@ -213,17 +215,14 @@ Output:
 
 #### Certificate Expiry Check
 
-Check locally:                            | Output:
------------------------------------------ | -----------------------------------------
-```bash                                   | notAfter=Jun 09 2027
-openssl x509 -enddate -noout -in tls.crt  |
-```
------------------------------------------ | ------------------------------------------
-Check remote site:                        | Useful for troubleshooting HTTPS issues
-```bash                                   |
-openssl s_client -connect myapp.local:443 |
-```                                       |
---------------------------------------------------------------------------------------
+## TLS Certificate Check (Local & Remote)
+
+## TLS Certificate Checks (Local vs Remote)
+
+| Scenario | Command | Output / Purpose |
+|----------|---------|------------------|
+| Check Certificate Locally | `openssl x509 -enddate -noout -in tls.crt` | `notAfter=Jun 09 2027` |
+| Check Remote Site Certificate | `openssl s_client -connect myapp.local:443` | Used for troubleshooting HTTPS/TLS issues and verifying remote server certificate |
 
 ### Production Environment
 
@@ -238,7 +237,7 @@ Flow: Encrypt -> cert-manager -> TLS Secret -> Ingress
 ```
 
 
-## Common Use Case: HTTPS for an Application
+### Common Use Case: HTTPS for an Application
 
 #### Step 1: Create TLS Certificate
 

@@ -49,6 +49,7 @@ Image:
 
 #### Create Self-Signed Certificate (using OpenSSL)
 
+-------------------------------------------------------------------------
 Generate private key:              |        Explanation                  |
 ---------------------------------  | ---------------------------------   |
                                    | #openssl      -> SSL tool           |
@@ -56,6 +57,8 @@ openssl genrsa -out tls.key 2048   | #genrsa       -> Generate RSA key   |
                                    | #-out tls.key -> Save as tls.key    |
 Output:  tls.key                   | #2048         -> Key size           | 
 ```
+-------------------------------------------------------------------------
+
 
 #### Generate self signed certificate:
 ------------------------------------------------------------------------

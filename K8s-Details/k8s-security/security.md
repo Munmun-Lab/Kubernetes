@@ -73,14 +73,24 @@ Image:
 | `-days 365` | -days 365 | Certificate validity (365 days) |
 
 
-#### Verify Certificate
+### Verify Certificate
 
-Command:                                | x509 -> Certificate format
-openssl x509 -in tls.crt -text -noout   | -in -> Input Certificate
-                                        | -text -> Show Details
--------------------------------------   | -noout -> Don't print raw certificate
-Shows: Issuer, Subject,Expiry Date      |
+#### Inspect TLS Certificate using OpenSSL
 
+| Command | Option | Explanation |
+|----------|--------|-------------|
+| `openssl x509 -in tls.crt -text -noout` | `x509` | Specifies certificate processing format |
+| | `-in tls.crt` | Input certificate file |
+| | `-text` | Displays human-readable certificate details |
+| | `-noout` | Prevents printing encoded certificate |
+
+#### Output Shows
+
+- Issuer (Who signed the certificate)
+- Subject (Who the certificate is issued to)
+- Validity Period (Start & Expiry date)
+- Public Key details
+- Signature algorithm
 
 #### Create Kubernetes TLS Secret
 

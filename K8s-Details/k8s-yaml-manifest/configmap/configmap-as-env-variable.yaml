@@ -11,17 +11,6 @@ data:
 ---
 
 #apiVersion: v1
-kind: Pod
-metadata:
-  name: app-pod
-spec:
-  containers:
-  - name: app
-    image: nginx
-
-    envFrom:
-    - configMapRef:
-        name: app-config
 apiVersion: v1
 kind: Pod
 metadata:

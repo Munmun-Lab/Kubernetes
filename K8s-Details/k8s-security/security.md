@@ -51,7 +51,7 @@ Image:
 
 Generate private key:              |        Explanation                  |
 ---------------------------------  | ---------------------------------   |
-```bash                            | #openssl      -> SSL tool           |
+                                   | #openssl      -> SSL tool           |
 openssl genrsa -out tls.key 2048   | #genrsa       -> Generate RSA key   |
                                    | #-out tls.key -> Save as tls.key    |
 Output:  tls.key                   | #2048         -> Key size           | 

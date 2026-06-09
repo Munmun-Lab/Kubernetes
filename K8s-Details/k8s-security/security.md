@@ -49,25 +49,28 @@ Image:
 
 #### Create Self-Signed Certificate (using OpenSSL)
 
+## Generate Private Key
 
-Generate private key:              |        Explanation                  |
----------------------------------  | ----------------------------------  |
-openssl genrsa -out tls.key 2048   | #openssl      -> SSL tool           |
-                                   | #genrsa       -> Generate RSA key   |
-                                   | #-out tls.key -> Save as tls.key    |
-Output:  tls.key                   | #2048         -> Key size           | 
------------------------------------------------------------------------
+| Command                            | Explanation                                        |
+| ---------------------------------- | -------------------------------------------------- |
+| `openssl genrsa -out tls.key 2048` | `openssl` → OpenSSL utility                        |
+|                                    | `genrsa` → Generate an RSA private key             |
+| output: tls.key                    | `-out tls.key` → Save the private key as `tls.key` |
+|                                    | `2048` → Key size (2048 bits)                      |
 
 
 #### Generate self signed certificate:
 
- openssl req -new -x509 \       | req          | Certificate request     
- -key tls.key \                 | -new         | Create new              
- -out tls.crt \                 | -x509        | Self-signed certificate
--days 365                       | -key tls.key | Use private key         
-------------------------------- | -out tls.crt | Output certificate      
-output: tls.crt                 | -days 365    | Valid for 365 days      
+## Generate Self-Signed Certificate using OpenSSL
 
+| Command Part | Option | Explanation |
+|--------------|--------|-------------|
+| `openssl req` | req | Start certificate request process |
+| `-new` | -new | Create a new request |
+| `-x509` | -x509 | Generate a self-signed certificate (not CSR) |
+| `-key tls.key` | -key tls.key | Use existing private key |
+| `-out tls.crt` | -out tls.crt | Output certificate file |
+| `-days 365` | -days 365 | Certificate validity (365 days) |
 
 
 #### Verify Certificate

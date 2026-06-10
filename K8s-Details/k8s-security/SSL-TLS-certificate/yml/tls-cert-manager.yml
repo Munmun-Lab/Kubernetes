@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    email: admin@example.com                                    # update will be send to this email id 
+    server: https://acme-v02.api.letsencrypt.org/directory      # acme endpoint server address
+    privateKeySecretRef:                                        # acme server authentication provate key stored on this secret
+      name: letsencrypt-prod-key
+    solvers:                    # A solvers tells cert-manager to prove himself as a owner 
+    - http01:                   # cert-manager use the http challenge
+        ingress:                # cert-manager use the ingress controller to expose the challenge temporarily
+          class: nginx          # temporary nginx ingress controller, other(alb, traefik,Istio) ingress controller can also be used, alb, 

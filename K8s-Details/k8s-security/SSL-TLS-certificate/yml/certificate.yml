@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: myapp-cert
+  namespace: default
+spec:
+  secretName: myapp-tls      # after obtaining certificate cert-manager will create automatically this secret & store the tls.key & tls.crt
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+  - myapp.example.com      # this domain name that will be placed inside the certificate, encrypt will verify using HTTP/DNS challenge the domain ownership

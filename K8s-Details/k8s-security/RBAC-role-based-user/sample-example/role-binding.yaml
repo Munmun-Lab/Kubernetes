@@ -1,0 +1,16 @@
+apiVersion: rbac.authorization.k8s.io/v1
+# this rolebinding allows the user <username> to read pods in the default namespace by binding the role pod-reader to the user
+# already created a Role named "pod-reader" in the default namespace with get, list, watch permissions on pods resource
+
+kind: RoleBinding   
+metadata:
+  name: read-pods
+  namespace: default
+subjects:               # you can specify more than one subject in a rolebinding
+- kind: User            # can also be Group or ServiceAccount
+  name: <username>      # Replace with the actual username adam
+  apiGroup: rbac.authorization.k8s.io
+roleRef:                 # reference to the role being bound
+  kind: Role             # this must be Role or ClusterRole depending on the type of role you are binding to
+  name: pod-reader       # name of the role to bind, this must be match with role name defined in role.yml
+  apiGroup: rbac.authorization.k8s.io

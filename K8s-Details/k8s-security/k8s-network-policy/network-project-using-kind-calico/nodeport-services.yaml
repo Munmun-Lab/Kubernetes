@@ -1,0 +1,60 @@
+# Create NodePort Services
+
+## frontend-service.yaml
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+
+spec:
+  type: NodePort
+
+  selector:
+    app: frontend
+
+  ports:
+  - port: 80
+    targetPort: 80
+
+
+## backend-service.yaml
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+
+spec:
+  type: NodePort
+
+  selector:
+    app: backend
+
+  ports:
+  - port: 80
+    targetPort: 80
+
+
+## db-service.yaml
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+
+spec:
+  type: NodePort
+
+  selector:
+    app: db
+
+  ports:
+  - port: 3306
+    targetPort: 3306
+
+
+

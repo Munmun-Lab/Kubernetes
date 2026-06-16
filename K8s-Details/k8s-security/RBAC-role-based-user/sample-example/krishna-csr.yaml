@@ -1,11 +1,11 @@
 apiVersion: certificates.k8s.io/v1
 kind: CertificateSigningRequest  
 metadata:
-  name: Client-CSR
+  name: krishna-CSR
 spec:
   request: <base64-encoded CSR>   # Base64-encoded certificate signing request
   signerName: kubernetes.io/kube-apiserver-client   # Signer for client certificates
   usages:
   - client auth   # Indicates the certificate will be used for client authentication    
-  expirationSeconds: 3600   # Optional: Set the certificate to expire after 1 hour  
-
+  expirationSeconds: 36000   # Optional: Set the certificate to expire after 1 hour  
+ 

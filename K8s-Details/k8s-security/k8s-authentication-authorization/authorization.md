@@ -33,6 +33,8 @@ User ----> API Server
 ```
 
 
+![authorization](Images/authentication-authrization.png)
+
 
 ### 2. Authorization = "What are you allowed to do?"
 
@@ -65,6 +67,8 @@ Most clusters use **RBAC**.
 
 * **Authentication = Identity** = Authentication verifies your identity
 * **Authorization = Permissions** = Authorization determines your access level
+
+![authorization](../Images/authentication-authrization.png)
 
 
 ### Making API Calls:

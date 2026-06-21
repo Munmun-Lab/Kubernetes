@@ -117,6 +117,7 @@ spec:
         matchLabels:
           role: backend
     ports:
-    - port: 3306
+    - protocol: TCP
+      port: 3306
  
 
